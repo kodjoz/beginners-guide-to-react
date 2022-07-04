@@ -1,0 +1,19 @@
+<body>
+  <main id="root"></main>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const Message = (props) => (
+      <section className="message">{props.msg}</section>
+    )
+    const element = (
+      <section className="container">
+        <Message msg="Hello World" />
+        <Message msg="Goodbye World" />
+        <span>hey hey</span>
+      </section>
+    )
+    ReactDOM.render(element, document.getElementById('root'))
+  </script>
+</body>

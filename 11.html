@@ -1,0 +1,74 @@
+<body>
+  <main id="root"></main>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <style>
+    .box {
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .box--large {
+      width: 270px;
+      height: 270px;
+    }
+
+    .box--medium {
+      width: 180px;
+      height: 180px;
+    }
+
+    .box--small {
+      width: 90px;
+      height: 90px;
+    }
+  </style>
+  <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    const Box = ({
+      className = ''.trim(),
+      style = ''.trim(),
+      size,
+      ...rest
+    }) => {
+      const sizeClassName = size ? `box--${size}` : ''
+      return (
+        <section
+          className={`box ${className} ${sizeClassName}`}
+          style={{ fontStyle: 'italic', ...style }}
+          {...rest}
+        />
+      )
+    }
+
+    const element = (
+      <section>
+        <Box
+          size="small"
+          style={{ backgroundColor: 'lightblue', fontStyle: 'italic' }}
+        >
+          small lightblue box
+        </Box>
+        <Box
+          size="medium"
+          style={{ backgroundColor: 'pink', fontStyle: 'italic' }}
+        >
+          medium pink box
+        </Box>
+        <Box
+          size="large"
+          style={{ backgroundColor: 'orange', fontStyle: 'italic' }}
+        >
+          large naranja box
+        </Box>
+      </section>
+    )
+
+    ReactDOM.render(element, rootElement)
+  </script>
+</body>

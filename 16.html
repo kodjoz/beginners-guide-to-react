@@ -1,0 +1,42 @@
+<body>
+  <main id="root"></main>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    function Greeting() {
+      // create the state
+      // check if there's a value in local storage
+      const [name, setName] = React.useState(() => {
+        return window.localStorage.getItem('name') || ''
+      })
+
+      React.useEffect(() => {
+        ;() => window.localStorage.setItem('name', name)
+      }, [name])
+
+      const handleChange = (event) => setName(event.target.value)
+      return (
+        <section>
+          <form>
+            <label htmlFor="name">Name: </label>
+            <input value={name} onChange={handleChange} id="name" />
+          </form>
+          {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+        </section>
+      )
+    }
+
+    function App() {
+      const [count, setCount] = React.useState(0)
+      return (
+        <>
+          <button onClick={() => setCount((c) => c + 1)}>{count}</button>
+          <Greeting />
+        </>
+      )
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+  </script>
+</body>
